@@ -1,0 +1,19 @@
+Host 0
+  Hostname student00.cse.nd.edu
+  User cvajiac
+
+Host 1
+  Hostname student01.cse.nd.edu
+  User cvajiac
+
+Host 2
+  Hostname student02.cse.nd.edu
+  User cvajiac
+
+Host 3
+  Hostname student03.cse.nd.edu
+  User cvajiac
+
+Host 4
+  Hostname student04.cse.nd.edu
+  User cvajiac

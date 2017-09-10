@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/catalina/AMD-RIPS2017/code/frameworks/by_batch'
+let g:netrw_dirhist_2='/home/catalina/AMD-RIPS2017/code/frameworks/helper_files'
+let g:netrw_dirhist_3='/home/catalina/Documents/fall17/programming_challenges/cse-30872-fa17-assignments/reading00'
+let g:netrw_dirhist_4='/home/catalina/mtheme'
+let g:netrw_dirhist_5='/home/catalina/Documents/fall17/paradigms/public-paradigms-fall17/scheme_dailies/d1'
+let g:netrw_dirhist_6='/home/catalina/math_club'
+let g:netrw_dirhist_7='/home/catalina/Documents/resume/files'
+let g:netrw_dirhist_8='/home/catalina/.dotfiles/.git'
