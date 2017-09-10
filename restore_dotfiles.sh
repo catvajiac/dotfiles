@@ -13,8 +13,9 @@ declare -A FILES=(
 )
 
 for FILE in "${!FILES[@]}"; do
-  if [ ! -e $FILE ]; then
-    echo "restoring $FILE..."
-    ln -s $FILE $HOME/${FILES[$FILE]}
+  ABS_PATH=$HOME/${FILES[$FILE]} 
+  if [ ! -f $ABS_PATH ] && [ ! -d $ABS_PATH ]; then
+    echo "$HOME/${FILES[$FILE]}..."
+    ln -s $DIR/$FILE $ABS_PATH
   fi
 done
