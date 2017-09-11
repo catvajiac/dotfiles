@@ -14,8 +14,10 @@ declare -A FILES=(
 
 for FILE in "${!FILES[@]}"; do
   ABS_PATH=$HOME/${FILES[$FILE]} 
-  if [ ! -f $ABS_PATH ] && [ ! -d $ABS_PATH ]; then
-    echo "$HOME/${FILES[$FILE]}..."
-    ln -s $DIR/$FILE $ABS_PATH
+  if [ -f $ABS_PATH ] || [ -d $ABS_PATH ]; then
+    echo "Removing old $ABS_PATH..."
+    rm -rf $ABS_PATH
   fi
+  echo "Linking      $ABS_PATH..."
+  ln -s $DIR/$FILE $ABS_PATH
 done
