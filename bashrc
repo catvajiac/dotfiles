@@ -152,5 +152,12 @@ alias xclip='xclip -selection clipboard'
 alias vpn='~/.local/bin/vpn.sh'
 alias lock='/home/catalina/.local/bin/lock -t ""'
 
+alias armsim='mono /home/catalina/Documents/arm_sim/ARMSim.exe'
+alias log="tail .config/notifyd/log | grep -o 'New message.*'"
+
 # enable fuck
 eval $(thefuck --alias)
+COLORFGBG="default;default"
+
+# for displaying using systemd
+systemctl --user import-environment PATH

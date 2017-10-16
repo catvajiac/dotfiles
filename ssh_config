@@ -17,3 +17,6 @@ Host 3
 Host 4
   Hostname student04.cse.nd.edu
   User cvajiac
+
+Host homestarrunner
+  Hostname 104.236.212.18

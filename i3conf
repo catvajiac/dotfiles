@@ -5,19 +5,21 @@
 # Configure bar
 # =============================================================================
 
-font pango:monospace 8
+#font pango:monospace 8
+font -*-tamzen-medium-r-normal-*-14-*-*-*-*-*-*-*
 
 # bar colors
 set $bar_color      #000000
 set $text           #ffffff
-set $separator      #ffffff
+set $separator      #b366ff
 set $statusline     #dcdcdc
 
 # client colors
-set $bg             #174f57
+set $bg             #b366ff
 set $bg-inactive    #1d2121
 set $bg-urgent      #b5294a
 set $text-inactive  #babdb6
+set $focused        #666699
 
 #                       border        background   text           indicator
 client.focused          $bg           $bg          $text          $bar_color
@@ -37,6 +39,10 @@ bar {
     background  $bar_color
     separator   $separator
     statusline  $statusline
+    focused_workspace     $focused $focused $text
+    #active_workspace
+    inactive_workspace $bar_color $bar_color $text
+    #urgent_workspace      #666699
   }
 }
 
@@ -182,7 +188,7 @@ bindsym --release $mod+Shift+s exec scrot
 # networking manager
 exec --no-startup-id nm-applet
 
-# palm detection
+# trackpad palm detection
 exec_always xinput --set-prop 13 "Synaptics Palm Detection" 1
 
 # scrolling
@@ -191,10 +197,21 @@ exec_always --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScr
 # set background wallpaper
 exec_always sh ~/.fehbg &
 
+# set notification daemon
+exec_always --no-startup-id $HOME/.config/notifyd/notifyd.py 2>&1 | tee -a $HOME/.config/notifyd/log
+exec_always --no-startup-id $HOME/.config/notifyd/scripts/notifyd-dbus.py
+
+# configure scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# font crap
+exec xset +fp ~/.fonts/tamzen-font/bdf
+exec xset fp rehash
+
 # ===========================================================================
 # configure i3 gaps
 # ===========================================================================
 
 for_window [class="^.*"] border pixel 1
 gap_size 5 
-
