@@ -11,11 +11,10 @@ set smartcase
 set title
 set background=dark
 
-
 " other
 set showmatch
 set relativenumber
-" set showcmd
+set noswapfile
 
 " automatically use paste mode when pasting items, wrapped for tmux
 " source: https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
@@ -40,10 +39,6 @@ function! XTermPasteBegin()
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()"toggle paste mode
-
-" toggle spellcheck
-" :map <F4> :setlocal spell! spelllang=en_us<cr>
-" imap <F4> <C-o>:setlocal spell! spelllang=en_us<cr>
 
 " set text width
 augroup Text

@@ -1,7 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -76,8 +75,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -135,9 +132,7 @@ export LESS_TERMCAP_so=$(printf '\e[01;33m')  # enter standout mode - yellow
 export LESS_TERMCAP_ue=$(printf '\e[0m')      # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m')  # enter underline mode - cyan
 
-# go path
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$(go env GOPATH)
+export PATH=$PATH:~/.local/bin:~/.config:
 
 # make default editor vim
 VISUAL=vim; export vim EDITOR=vim; export vim
@@ -148,16 +143,23 @@ alias woman='man'
 alias tmux='tmux -2'
 alias xclip='xclip -selection clipboard'
 
-# for scripts you wrote
-alias vpn='~/.local/bin/vpn.sh'
-alias lock='/home/catalina/.local/bin/lock -t ""'
+alias sl='sl -alF'
 
-alias armsim='mono /home/catalina/Documents/arm_sim/ARMSim.exe'
-alias log="tail .config/notifyd/log | grep -o 'New message.*'"
-
-# enable fuck
-eval $(thefuck --alias)
 COLORFGBG="default;default"
 
 # for displaying using systemd
 systemctl --user import-environment PATH
+
+# SSH agent
+if [ -S ${XDG_RUNTIME_DIR}/ssh-agent ]; then
+  export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/ssh-agent
+else
+  eval $(ssh-agent -a ${XDG_RUNTIME_DIR}/ssh-agent 2> /dev/null)
+fi 
+
+# startx
+if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  exec startx
+fi
+
+cowsay -f elephant-in-snake "on ne voit bien qu'avec le coeur"

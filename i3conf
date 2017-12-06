@@ -149,15 +149,15 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg e
 # resize window (you can also use the mouse for that)
 mode "resize" {
   # resize window appropriately
-  bindsym h resize shrink width 10 px or 10 ppt
-  bindsym j resize grow height 10 px or 10 ppt
-  bindsym k resize shrink height 10 px or 10 ppt
-  bindsym l resize grow width 10 px or 10 ppt
+  bindsym h resize shrink width 5 px or 5 ppt
+  bindsym j resize grow height 5 px or 5 ppt
+  bindsym k resize shrink height 5 px or 5 ppt
+  bindsym l resize grow width 5 px or 5 ppt
 
-  bindsym Left  resize shrink width 10 px or 10 ppt
-  bindsym Down  resize grow height 10 px or 10 ppt
-  bindsym Up    resize shrink height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Left  resize shrink width 5 px or 5 ppt
+  bindsym Down  resize grow height 5 px or 5 ppt
+  bindsym Up    resize shrink height 5 px or 5 ppt
+  bindsym Right resize grow width 5 px or 5 ppt
 
   # exit resize mode
   bindsym Return mode "default"
@@ -166,9 +166,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# =============================================================================
+# =====================================================================
 # Launch initial applications
-# =============================================================================
+# =====================================================================
 
 # audio controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
@@ -178,9 +178,14 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
 # lock screen
 #bindsyme $mod+l exec "/home/catalina/.local/bin/lock -t ''"
 
-# screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+
+for_window [class="^.*"] border pixel 1
+new_window 1pixel
+
+#parent screen brightness controls
+exec_always xbacklight -set 50
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 bindsym --release $mod+Shift+w exec scrot -s
 bindsym --release $mod+Shift+s exec scrot
@@ -197,10 +202,6 @@ exec_always --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScr
 # set background wallpaper
 exec_always sh ~/.fehbg &
 
-# set notification daemon
-exec_always --no-startup-id $HOME/.config/notifyd/notifyd.py 2>&1 | tee -a $HOME/.config/notifyd/log
-exec_always --no-startup-id $HOME/.config/notifyd/scripts/notifyd-dbus.py
-
 # configure scratchpad
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
@@ -209,9 +210,15 @@ bindsym $mod+minus scratchpad show
 exec xset +fp ~/.fonts/tamzen-font/bdf
 exec xset fp rehash
 
-# ===========================================================================
+# =====================================================================
 # configure i3 gaps
-# ===========================================================================
+# =====================================================================
 
-for_window [class="^.*"] border pixel 1
-gap_size 5 
+gaps inner 7
+gaps outer 2
+
+# background
+exec_always --no-startup-id feh --bg-fill "~/Pictures/le_petit_prince.jpg"
+exec_always compton --config ~/.config/compton.conf  
+
+exec_always --no-startup-id xss-lock -- i3lock -c 000000

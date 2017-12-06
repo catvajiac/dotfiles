@@ -20,3 +20,6 @@ Host 4
 
 Host homestarrunner
   Hostname 104.236.212.18
+
+Host rpi
+  Hostname 10.0.0.123
