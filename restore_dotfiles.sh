@@ -10,6 +10,7 @@ declare -A FILES=(
   [ssh_config]=".ssh/config"
   [vim]=".vim"
   [vimrc]=".vimrc"
+  [tmux_conf]=".tmux.conf"
 )
 
 for FILE in "${!FILES[@]}"; do
