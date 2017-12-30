@@ -11,6 +11,7 @@ declare -A FILES=(
   [vim]=".vim"
   [vimrc]=".vimrc"
   [tmux_conf]=".tmux.conf"
+  [vpn.sh]=".local/bin/vpn"
 )
 
 for FILE in "${!FILES[@]}"; do

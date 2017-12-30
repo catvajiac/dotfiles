@@ -1,8 +1,11 @@
 #!/bin/sh
 
+PIDDIR="/var/run/vpnc/"
+PIDFILE=$PIDDIR"pid"
+
 usage() {
   cat << EOF
-usage: vpn.sh [options]
+usage: `basename "$0"` [options]
   -c  Connect to vpnaccess.nd.edu
   -d  Disconnect from vpnaccess.nd.edu
 EOF
@@ -13,12 +16,20 @@ if [ $# -eq 0 ]; then
   usage 1
 fi
 
+if [ ! -d $PIDDIR ]; then
+  mkdir $PIDDIR
+fi
+
+if [ ! -f $PIDFILE ]; then
+  touch $PIDFILE
+fi
+
 while [ $# -gt 0 ]; do
   if [ "$1" = '-h' ]; then
     usage 0
   elif [ "$1" = '-c' ]; then
     echo "Connecting..."
-    sudo openconnect --pid-file=/var/run/vpnc/pid -b vpnaccess.nd.edu
+    sudo openconnect -q -u cvajiac --pid-file=/var/run/vpnc/pid -b vpnaccess.nd.edu
   elif [ "$1" = '-d' ]; then
     echo "Disconnecting..."
     sudo pkill openconnect
