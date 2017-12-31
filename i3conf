@@ -3,8 +3,7 @@
 
 # =============================================================================
 # Configure bar
-# =============================================================================
-
+# ============================================================================= 
 #font pango:monospace 8
 font -*-tamzen-medium-r-normal-*-14-*-*-*-*-*-*-*
 
@@ -28,23 +27,6 @@ client.focused_inactive $bg-inactive  $bg-inactive $text-inactive $bar_color
 client.urgent           $bg-urgent    $bg-urgent   $text          $bar_color
 
 hide_edge_borders both
-
-# start i3bar
-bar {
-  status_command i3status
-  tray_output primary
-  position top
-  separator_symbol " | "
-  colors {
-    background  $bar_color
-    separator   $separator
-    statusline  $statusline
-    focused_workspace     $focused $focused $text
-    #active_workspace
-    inactive_workspace $bar_color $bar_color $text
-    #urgent_workspace      #666699
-  }
-}
 
 # =============================================================================
 # Keybindings
@@ -190,13 +172,11 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 bindsym --release $mod+Shift+w exec scrot -s
 bindsym --release $mod+Shift+s exec scrot
 
-# networking manager
-exec --no-startup-id nm-applet
+# polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-# trackpad palm detection
+# trackpad
 exec_always xinput --set-prop 13 "Synaptics Palm Detection" 1
-
-# scrolling
 exec_always --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-113
 
 # set background wallpaper
@@ -218,7 +198,6 @@ gaps inner 7
 gaps outer 2
 
 # background
-exec_always --no-startup-id feh --bg-fill "~/Pictures/le_petit_prince.jpg"
-exec_always compton --config ~/.config/compton.conf  
+#exec_always --no-startup-id feh --bg-fill "~/Pictures/le_petit_prince.jpg"
 
 exec_always --no-startup-id xss-lock -- i3lock -c 000000
