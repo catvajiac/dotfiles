@@ -179,8 +179,9 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always xinput --set-prop 13 "Synaptics Palm Detection" 1
 exec_always --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-113
 
-# set background wallpaper
+# set background wallpaper and transparency
 exec_always sh ~/.fehbg &
+compton -cCGfF -b -i 0.0 --active-opacity .0 --vsync opengl
 
 # configure scratchpad
 bindsym $mod+Shift+minus move scratchpad
