@@ -6,13 +6,14 @@ declare -A FILES=(
   [bashrc]=".bashrc"
   [i3conf]=".config/i3/config"
   [i3statusconf]=".i3status.conf"
+  [le_petit_prince.sh]=".local/bin/le_petit_prince"
   [lfptrc]=".lfptrc"
+  [polybar]=".config/polybar"
   [ssh_config]=".ssh/config"
+  [tmux_conf]=".tmux.conf"
   [vim]=".vim"
   [vimrc]=".vimrc"
-  [tmux_conf]=".tmux.conf"
   [vpn.sh]=".local/bin/vpn"
-  [polybar]=".config/polybar"
 )
 
 for FILE in "${!FILES[@]}"; do

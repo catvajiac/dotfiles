@@ -30,8 +30,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
@@ -91,7 +90,8 @@ alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal finished || echo terminal error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert="notify-send terminal finished!"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -114,6 +114,7 @@ if ! shopt -oq posix; then
 fi
 
 export TERM=xterm-256color
+export TERMINAL=terminator
 
 # set prompt and colors
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\W\[\033[m\]\$ "
@@ -132,7 +133,7 @@ export LESS_TERMCAP_so=$(printf '\e[01;33m')  # enter standout mode - yellow
 export LESS_TERMCAP_ue=$(printf '\e[0m')      # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m')  # enter underline mode - cyan
 
-export PATH=$PATH:~/.local/bin:~/.config:
+export PATH=$PATH:~/.local/bin:~/.config/notifyd/scripts:
 
 # make default editor vim
 VISUAL=vim; export vim EDITOR=vim; export vim
@@ -148,7 +149,7 @@ alias sl='sl -alF'
 COLORFGBG="default;default"
 
 # for displaying using systemd
-systemctl --user import-environment PATH
+#systemctl --user import-environment PATH
 
 # SSH agent
 if [ -S ${XDG_RUNTIME_DIR}/ssh-agent ]; then
@@ -162,4 +163,4 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
   exec startx
 fi
 
-cowsay -f elephant-in-snake "on ne voit bien qu'avec le coeur"
+$HOME/.local/bin/le_petit_prince
