@@ -181,7 +181,7 @@ exec_always --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScr
 
 # set background wallpaper and transparency
 exec_always sh ~/.fehbg &
-compton -cCGfF -b -i 0.0 --active-opacity .0 --vsync opengl
+exec compton -cCGfF -b -i 0.0 --active-opacity 0.0 --vsync opengl
 
 # configure scratchpad
 bindsym $mod+Shift+minus move scratchpad
