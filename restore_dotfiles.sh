@@ -10,6 +10,7 @@ declare -A FILES=(
   [lfptrc]=".lfptrc"
   [polybar]=".config/polybar"
   [ssh_config]=".ssh/config"
+  [term_conf]=".config/terminator/config"
   [tmux_conf]=".tmux.conf"
   [vim]=".vim"
   [vimrc]=".vimrc"
