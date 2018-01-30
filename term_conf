@@ -1,5 +1,6 @@
 [global_config]
   dbus = False
+  use_custom_url_handler = True
 [keybindings]
 [layouts]
   [[default]]
@@ -13,13 +14,15 @@
 [profiles]
   [[default]]
     allow_bold = False
-    background_darkness = 0.37
+    background_darkness = 0.07
     background_type = transparent
     cursor_color = "#aaaaaa"
     cursor_shape = ibeam
     font = Misc Tamzen 12
     foreground_color = "#ffffff"
-    palette = "#353535:#cc0000:#20af75:#f4b085:#1c6a6b:#7a4591:#65aaca:#eeeeec:#353535:#cc0000:#20af75:#f4b085:#06989a:#ad7fa8:#65aaca:#eeeeec"
+    palette = "#353535:#353535:#20af75:#f4b085:#1c6a6b:#7a4591:#65aaca:#eeeeec:#353535:#555753:#20af75:#f4b085:#06989a:#ad7fa8:#65aaca:#eeeeec"
     scrollbar_position = hidden
     show_titlebar = False
     use_system_font = False
+  [[New Profile]]
+    cursor_color = "#aaaaaa"

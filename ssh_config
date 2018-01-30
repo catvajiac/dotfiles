@@ -20,6 +20,16 @@ Host 4
 
 Host homestarrunner
   Hostname 104.236.212.18
+  User trogdor
+
+Host crc
+  Hostname crcfe01.crc.nd.edu
+  User cvajiac
+
+Host dsg1
+  Hostname dsg1.crc.nd.edu
+  User cvajiac
+
 
 Host rpi
   Hostname 10.0.0.123

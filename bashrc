@@ -143,6 +143,7 @@ alias vi='vim'
 alias woman='man'
 alias tmux='tmux -2'
 alias xclip='xclip -selection clipboard'
+alias mutt='$HOME/.local/bin/mutt'
 
 alias sl='sl -alF'
 
@@ -162,5 +163,8 @@ fi
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
   exec startx
 fi
+echo -e -n "\x1b[\x35 q" # changes to blinking bar
+
+export BOYS="404 not found"
 
 $HOME/.local/bin/le_petit_prince

@@ -186,6 +186,7 @@ exec compton -cCGfF -b -i 0.0 --active-opacity 0.0 --vsync opengl
 # configure scratchpad
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+f floating toggle
 
 # font crap
 exec xset +fp ~/.fonts/tamzen-font/bdf
@@ -195,8 +196,7 @@ exec xset fp rehash
 # configure i3 gaps
 # =====================================================================
 
-gaps inner 7
-gaps outer 2
+gaps inner 17
 
 # background
 #exec_always --no-startup-id feh --bg-fill "~/Pictures/le_petit_prince.jpg"

@@ -23,6 +23,27 @@ modules-left = i3
 modules-center = xwindow
 modules-right = vpn volume memory cpu temperature wlan time date battery 
 
+[bar/bar2]
+monitor = HDMI1
+width = 100%
+height = 20
+fixed-center = true
+
+background = #252525
+foreground = #ffffff
+warning = #f5a70a
+
+padding-left = 0
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 1
+
+font-0 = tamzen:pixelsize=14
+
+modules-left = i3
+modules-center = xwindow
+modules-right = vpn volume memory cpu temperature wlan time date battery 
+
 [module/xwindow]
 type = internal/xwindow
 label-maxlen = 90
