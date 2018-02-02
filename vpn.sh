@@ -17,7 +17,7 @@ if [ $# -eq 0 ]; then
 fi
 
 if [ ! -d $PIDDIR ]; then
-  mkdir $PIDDIR
+  mkdir -p $PIDDIR
 fi
 
 if [ ! -f $PIDFILE ]; then
