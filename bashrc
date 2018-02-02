@@ -133,7 +133,7 @@ export LESS_TERMCAP_so=$(printf '\e[01;33m')  # enter standout mode - yellow
 export LESS_TERMCAP_ue=$(printf '\e[0m')      # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m')  # enter underline mode - cyan
 
-export PATH=$PATH:~/.local/bin:~/.config/notifyd/scripts:
+export PATH=$PATH:~/.local/bin:~/.config/notifyd/scripts:/usr/local/texlive/2017/bin/x86_64-linux:
 
 # make default editor vim
 VISUAL=vim; export vim EDITOR=vim; export vim
@@ -149,9 +149,6 @@ alias sl='sl -alF'
 
 COLORFGBG="default;default"
 
-# for displaying using systemd
-#systemctl --user import-environment PATH
-
 # SSH agent
 if [ -S ${XDG_RUNTIME_DIR}/ssh-agent ]; then
   export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/ssh-agent
@@ -163,7 +160,6 @@ fi
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
   exec startx
 fi
-echo -e -n "\x1b[\x35 q" # changes to blinking bar
 
 export BOYS="404 not found"
 
