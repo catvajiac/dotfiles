@@ -31,6 +31,15 @@ VISUAL=vim
 export vim EDITOR=vim
 export vim
 
+# colors
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
 # color less pages
 export LESS_TERMCAP_mb=$(printf $RED)    # enter blinking mode
 export LESS_TERMCAP_md=$(printf $PURPLE) # enter double-bright mode
