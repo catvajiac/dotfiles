@@ -2,11 +2,10 @@
 # catalina vajiac
 
 # color definitions
-#WHITE='\e[0m'
-WHITE='\[\033[m\]'
-BLUE='\[\033[36m\]'
-GREEN='\[\033[32m\]'
-PEACH='\[\033[33m\]'
+WHITE='\e[0m'
+BLUE='\e[01;32m'
+BLUE='\e[01;36m'
+PEACH='\e[01;33m'
 PURPLE='\e[01;35m'
 RED='\e[01;31m'
 
@@ -20,21 +19,13 @@ shopt -s checkwinsize   # check window size and update values of LINES and COLUM
 # thanks 8bit <3
 #. ~/.if/fi
 
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-#if ! shopt -oq posix; then
-#  if [ -f /usr/share/bash-completion/bash_completion ]; then
-#    . /usr/share/bash-completion/bash_completion
-#  elif [ -f /etc/bash_completion ]; then
-#    . /etc/bash_completion
-#  fi
-#fi
-
 # important variables
 export TERM=xterm-256color
 export TERMINAL=terminator
 export CLICOLOR=1
 export PS1="$BLUE\u$WHITE@$GREEN\h:$PEACH\W$WHITE$ "
 export BOYS="403 Access Denied/Forbidden"
+export LESSCHARSET="utf-8"
 
 # make default editor vim
 VISUAL=vim
