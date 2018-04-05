@@ -1,21 +1,25 @@
 #!/bin/bash
 DIR=`pwd`
+NOTIFYD=".config/notifyd/scripts"
+BIN=".local/bin"
 
 declare -A FILES=(
   [anyconnect]=".anyconnect"
   [bashrc]=".bashrc"
   [i3conf]=".config/i3/config"
   [i3statusconf]=".i3status.conf"
-  [le_petit_prince.sh]=".local/bin/le_petit_prince"
+  [le_petit_prince.sh]="$BIN/le_petit_prince"
   [lfptrc]=".lfptrc"
-  [pdf.sh]='.local/bin/pdf'
+  [pdf.sh]="$BIN/pdf"
   [polybar]=".config/polybar"
+  [signal.sh]="$BIN/signal"
   [ssh_config]=".ssh/config"
   [term_conf]=".config/terminator/config"
   [tmux_conf]=".tmux.conf"
+  [user-dirs]=".config/user-dirs.dirs"
   [vim]=".vim"
   [vimrc]=".vimrc"
-  [vpn.sh]=".local/bin/vpn"
+  [vpn.sh]="$BIN/vpn"
 )
 
 for FILE in "${!FILES[@]}"; do
@@ -27,3 +31,5 @@ for FILE in "${!FILES[@]}"; do
   echo "Linking      $FILE..."
   ln -s $DIR/$FILE $ABS_PATH
 done
+
+ln -s "$HOME/$NOTIFYD/notifyd-toggle.sh" "$HOME/$BIN/toggle-notifications"
