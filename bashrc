@@ -21,7 +21,7 @@ shopt -s checkwinsize   # check window size and update values of LINES and COLUM
 #. \.\.\.
 
 # important variables
-export TERM=xterm-256color
+export TERM=screen-256color
 export TERMINAL=terminator
 export CLICOLOR=1
 export PS1="\[$BLUE\]\u\[$WHITE\]@\[$GREEN\]\h:\[$PEACH\]\W\[$WHITE\]$ "
