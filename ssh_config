@@ -18,6 +18,10 @@ Host 4
   Hostname student04.cse.nd.edu
   User cvajiac
 
+Host 6
+  Hostname student06.cse.nd.edu
+  User cvajiac
+
 Host homestarrunner
   Hostname 104.236.212.18
   User trogdor
@@ -30,6 +34,6 @@ Host dsg1
   Hostname dsg1.crc.nd.edu
   User cvajiac
 
-
-Host rpi
-  Hostname 10.0.0.123
+Host imac
+  Hostname 10.0.0.190
+  User catalina
