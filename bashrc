@@ -44,16 +44,16 @@ fi
 
 # color less pages
 export LESS_TERMCAP_mb=$(printf $RED)    # enter blinking mode
-export LESS_TERMCAP_md=$(printf $PURPLE) # enter double-bright mode
+export LESS_TERMCAP_md=$(printf $BLUE) # enter double-bright mode
 export LESS_TERMCAP_me=$(printf $WHITE)  # turn off all appearance modes
 export LESS_TERMCAP_se=$(printf $WHITE)  # leave standout mode    
-export LESS_TERMCAP_so=$(printf $PEACH)  # enter standout mode
+export LESS_TERMCAP_so=$(printf $PURPLE)  # enter standout mode
 export LESS_TERMCAP_ue=$(printf $WHITE)  # leave underline mode
-export LESS_TERMCAP_us=$(printf $BLUE)   # enter underline mode
+export LESS_TERMCAP_us=$(printf $PEACH)   # enter underline mode
 
 # path
 TEXPATH='/usr/local/texlive/2017/bin/x86_64-linux'
-export PATH=$PATH:~/.local/bin:~/.config/notifyd/scripts:$TEXPATH:
+export PATH=$PATH:~/.local/bin:$TEXPATH:
 
 # useful aliases
 alias woman='man'
