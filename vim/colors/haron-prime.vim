@@ -310,7 +310,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("Typedef", s:lyme, "", "bold")
 	call <SID>X("Define", s:blue, "", "none")
 	call <SID>X("Include", s:blue, "", "")
-	"call <SID>X("Ignore", "666666", "", "")
+	call <SID>X("Ignore", "666666", "", "")
 	call <SID>X("Number", s:orange, "" , "")
 	call <SID>X("Character", s:olive, "", "")
 	call <SID>X("Number", s:orange, "", "")

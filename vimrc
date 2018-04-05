@@ -1,20 +1,30 @@
-" set tab key/spacing
+
+" set tab key spacing
 set backspace=indent,eol,start
-set tabstop=2
-set softtabstop=2
-set expandtab
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set autoindent
 set tw=79
+
+" set text width
+augroup Text
+    autocmd!
+    autocmd FileType text setlocal textwidth=80
+augroup END
+
 " ignore case except with capital letters
-set ignorecase
-set smartcase
+set ignorecase smartcase
+
+" other useful things
 set title
 set background=dark
-
-" other
 set showmatch
 set relativenumber
 set noswapfile
+set spelllang=en
+
+" remove whitespace from end of lines
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+
 
 " automatically use paste mode when pasting items, wrapped for tmux
 " source: https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
@@ -40,33 +50,42 @@ endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()"toggle paste mode
 
-" set text width
-augroup Text
-    autocmd!
-    autocmd FileType text setlocal textwidth=80
-augroup END
 
-" Highlight current line
+" highlight current line
 set cursorline
 highlight CursorLine cterm=bold
 
-" Commenting blocks of code
-" http://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim
-augroup Comment
-    autocmd!
-    autocmd FileType c,cpp,java,scala,go  let b:comment_leader = '// '
-    autocmd FileType sh,ruby,python       let b:comment_leader = '# '
-    autocmd FileType conf,fstab           let b:comment_leader = '# '
-    autocmd FileType tex                  let b:comment_leader = '% '
-    autocmd FileType mail                 let b:comment_leader = '> '
-    autocmd FileType vim                  let b:comment_leader = '" '
-    autocmd FileType scheme               let b:comment_leader = ';; '
-    noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-    noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-augroup END
-
+" basic settings
 syntax on
 let $t_Co=256
 colorscheme haron-prime
 inoremap jk <ESC>
-vnoremap jk <ESC>
+nmap x ml
+
+
+" plugins: vim-plug
+filetype on
+filetype plugin indent on
+
+call plug#begin()
+Plug 'itchyny/lightline.vim'
+Plug 'w0rp/ale'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'svermeulen/vim-easyclip'
+Plug 'tpope/vim-repeat'
+Plug 'godlygeek/csapprox'
+Plug 'rafi/awesome-vim-colorschemes'
+call plug#end()
+
+" lightline settings
+set laststatus=2
+let g:lightline = {'colorscheme': 'Dracula'}
+
+" ale settings
+let g:ale_sign_column_always = 1
+highlight clear ALEErrorSign cterm=bold
+highlight clear ALEWarningSign cterm=bold
+
+" easy-clip settings
+let g:EasyClipShareYanks = 1
