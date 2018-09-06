@@ -1,76 +1,78 @@
-[global/wm]
-margin-top = 5
-margin-bottom = 5
+[colors]
+background = #cc252525
+background-alt = #ff454545
+foreground = #ffffff
+foreground-alt = #ffffff
+primary =  #456771
+secondary = #09404d
+alert = #bd2c40
 
 [bar/bar]
-monitor = LVDS1
 width = 100%
-height = 20
-fixed-center = true
+height = 25
+radius = 3.0
+fixed-center = false
 
-background = #252525
-foreground = #ffffff
-warning = #f5a70a
+background = ${colors.background}
+foreground = ${colors.foreground}
 
+line-size = 3
+line-color = #f00
+
+border-size = 5
+border-bottom-size = 0
+border-color = #00000000
 padding-left = 0
-padding-right = 2
-module-margin-left = 2
-module-margin-right = 1
+padding-right = 1
 
-font-0 = tamzen:pixelsize=14
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Tamzen:pixelsize=14;
+font-1 = Font Awesome 5 Free Regular:pixelsize=9;1;
+font-2 = Font Awesome 5 Brands:pixelsize=9;1;
+font-3 = Font Awesome 5 Free Solid:pixelsize=9;2;
+font-4 = Siji:pixelsize=10;1;
+font-5 = mono:pixelsize=9;1
 
 modules-left = i3
 modules-center = xwindow
-modules-right = vpn volume memory cpu temperature wlan time date battery 
+modules-right = mpd vpn volume xbacklight temperature wlan battery time kernel-version
 
-[bar/bar2]
-monitor = HDMI1
-width = 100%
-height = 20
-fixed-center = true
+tray-position = right
+tray-padding = 2
+tray-transparent = true
+tray-background = #0063ff
 
-background = #252525
-foreground = #ffffff
-warning = #f5a70a
-
-padding-left = 0
-padding-right = 2
-module-margin-left = 2
-module-margin-right = 1
-
-font-0 = tamzen:pixelsize=14
-
-modules-left = i3
-modules-center = xwindow
-modules-right = vpn volume memory cpu temperature wlan time date battery 
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 [module/xwindow]
 type = internal/xwindow
-label-maxlen = 90
+label = %title:0:30:...%
 format-foreground = #cd96e5
 
 [module/i3]
 type = internal/i3
 format = <label-state>
 index-sort = true
-pin-workspaces = true
+wrapping-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
 
 label-focused = %index%
 label-focused-background = #353535
-label-focused-foreground = #65aaca
-label-focused-padding = 1
+label-focused-underline = #65aaca
+label-focused-padding = 2
 
 label-unfocused = %index%
-label-unfocused-padding = 1
+label-unfocused-padding = 2
 
 label-urgent = %index%
 label-urgent-background = #cd96e5
-label-urgent-foreground = #ffffff
-label-urgent-padding = 1
-
-label-visible = %index%
-label-visible-foreground = #55
-label-visible-padding = 1
+label-urgent-padding = 2
 
 [module/vpn]
 type = custom/script
@@ -79,87 +81,172 @@ exec-if = pgrep openconnect
 interval = 5
 format-foreground = #81a500
 
-[module/cpu]
-type = internal/cpu
-interval = 3
-label = %percentage%%
-format-foreground = #af8787
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-[module/memory]
-type = internal/memory
-interval = 3
-label = %gb_free%
-format-foreground = #20af75
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 65
-interval = 3
-format-foreground = #65aaca
-label-warn-foreground = #f4b085
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = ●
+bar-indicator-foreground = #
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
 
 [module/wlan]
 type = internal/network
 interface = wlp2s0
-interval = 3
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline =  #456771
 label-connected = %essid%
 label-connected-foreground = #81a500
-label-disconnected = down
 label-disconnected-foreground = #f4b085
+
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = down
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
 interface = enp1s0f0
-interval = 3
+interval = 3.0
+
+format-connected-underline =  #456771
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
-label-connected-foreground = #81a500
-label-disconnected = %ifname%
-label-disconnected-foreground = #f4b085
 
-[module/time]
-type = custom/script
-exec = date +%H:%M
-click-left = pkill -USR1 redshift
-scroll-up = light -A 5
-scroll-down = light -U 5
-interval = 60
-format-foreground = #cd96e5
-
-[module/date]
-type = custom/script
-exec = date +"%a, %b %d"
-click-left = gsimplecal
-interval = 60
-
-format-foreground = #cd96e5
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/volume]
 type = internal/volume
 
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
-master-mixer = Master
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-headphone-id = 9
-mapped = true
-format-volume-foreground = #ff0000
-#label-muted-foreground = #66
-label-volume-foreground = #ff0000
-bar-volume-indicator-foreground = #af8787
+format-volume = <label-volume> <bar-volume>
+label-volume = 
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = MUTED 
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #9f78e1
+bar-volume-foreground-1 = #9f78e1
+bar-volume-foreground-2 = #9f78e1
+bar-volume-foreground-3 = #9f78e1
+bar-volume-foreground-4 = #9f78e1
+bar-volume-foreground-5 = #9f78e1
+bar-volume-foreground-6 = #9f78e1
+bar-volume-gradient = true
+bar-volume-indicator = ●
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
 battery = BAT0
-adapter = AC0
-full-at = 97
+adapter = ADP1
+full-at = 98
 
-format-charging = chr <label-charging>
+format-charging = <animation-charging> <label-charging>
 format-charging-foreground = #65aaca
-format-discharging = bat <label-discharging>
+format-charging-underline =  #456771
+
+format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-foreground = #65aaca
-format-full = full
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-foreground = #65aaca
-; vim:ft=dosini
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-foreground = #65aaca
+label-warn-foreground = #f4b085
+format-underline =  #456771
+format-warn = <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
+[settings]
+screenchange-reload = true
+
+[module/kernel-version]
+type = custom/script
+exec = uname -r
+interval = 1024
+format-underline =  #456771
+format-prefix = " "
+
+[module/time]
+type = custom/script
+exec = date +"%b %d %H:%M"
+interval = 1
+format-underline =  #456771
+format-prefix = " "
+format-prefix-foreground = #ffffff
+format-foreground = #cd96e5
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

@@ -5,8 +5,7 @@
 # Configure bar
 # ============================================================================= 
 #font pango:monospace 8
-font -*-tamzen-medium-r-normal-*-14-*-*-*-*-*-*-*
-
+font -*-tamzen-medium-r-normal-*-14-*-*-*-*-*-*-* 
 # bar colors
 set $bar_color      #000000
 set $text           #ffffff
@@ -44,8 +43,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# start rofi
+bindsym $mod+d exec rofi -show run
 
 # change focus
 #bindsym $mod+h focus left
@@ -161,9 +160,9 @@ for_window [class="^.*"] border pixel 1
 new_window 1pixel
 
 #parent screen brightness controls
-exec_always xbacklight -set 50
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+exec xbacklight -set 50
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 bindsym --release $mod+Shift+w exec scrot -s
 bindsym --release $mod+Shift+s exec scrot
@@ -187,4 +186,6 @@ exec xset fp rehash
 # configure i3 gaps
 # =====================================================================
 
-gaps inner 17
+gaps inner 5
+
+exec compton -cCGfF -b --active-opacity 1.0
