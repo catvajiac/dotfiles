@@ -16,7 +16,6 @@ declare -A FILES=(
   [polybar]=".config/polybar"
   [ssh_config]=".ssh/config"
   [term_conf]=".config/terminator/config"
-  [user-dirs]=".config/user-dirs.dirs"
 )
 
 
@@ -34,4 +33,4 @@ for FILE in "${!FILES[@]}"; do
   link_script "$DIR/$FILE" "$ABS_PATH"
 done
 
-#link_script "$HOME/$NOTIFYD/notifyd-toggle.sh" "$HOME/$BIN/toggle-notifications"
+link_script "$HOME/$NOTIFYD/notifyd-toggle.sh" "$BIN/toggle-notifications"
