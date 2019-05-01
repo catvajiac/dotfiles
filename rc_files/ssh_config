@@ -34,6 +34,14 @@ Host dsg1
   Hostname dsg1.crc.nd.edu
   User cvajiac
 
+Host disc
+  Hostname disc01.crc.nd.edu
+  User cvajiac
+
 Host imac
   Hostname 10.0.0.190
+  User catalina
+
+Host rpi
+  Hostname 73.74.18.167
   User catalina

@@ -16,9 +16,6 @@ HISTCONTROL=ignoreboth  # no duplicate lines or lines starting with space
 shopt -s histappend     # append to history, don't overwrite
 shopt -s checkwinsize   # check window size and update values of LINES and COLUMNS
 
-# thanks 8bit <3
-#. ~/.if/fi
-#. \.\.\.
 
 # important variables
 export TERM=screen-256color
@@ -53,7 +50,8 @@ export LESS_TERMCAP_us=$(printf $PEACH)   # enter underline mode
 
 # path
 TEXPATH='/usr/local/texlive/2017/bin/x86_64-linux'
-export PATH=$PATH:~/.local/bin:$TEXPATH:
+MATLAB='/usr/local/matlab/r2018b/bin'
+export PATH=$PATH:~/.local/bin:$TEXPATH:$MATLAB:
 
 # useful aliases
 alias woman='man'
@@ -63,6 +61,11 @@ alias mutt='$HOME/.local/bin/mutt'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias vim='echo hi cat; /usr/bin/vim'
+alias py='python3'
+alias mv='mv -v'
+alias ocaml='rlwrap ocaml'
+alias f='pwd | xclip'
 
 # SSH agent
 if [ -S ${XDG_RUNTIME_DIR}/ssh-agent ]; then
@@ -77,3 +80,6 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 fi
 
 $HOME/.local/bin/le_petit_prince
+
+(wal -i ~/wallpapers/space.jpg > /dev/null &)
+(cat ~/.cache/wal/sequences &)

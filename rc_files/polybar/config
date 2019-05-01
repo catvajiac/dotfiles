@@ -1,5 +1,5 @@
 [colors]
-background = #cc252525
+background = #55353535
 background-alt = #ff454545
 foreground = #ffffff
 foreground-alt = #ffffff
@@ -12,6 +12,9 @@ width = 100%
 height = 25
 radius = 3.0
 fixed-center = false
+
+
+color = ${xrdb:color3:#000000}
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -37,11 +40,10 @@ font-5 = mono:pixelsize=9;1
 
 modules-left = i3
 modules-center = xwindow
-modules-right = mpd vpn volume xbacklight temperature wlan battery time kernel-version
+modules-right = vpn alsa xbacklight temperature wlan battery time kernel-version
 
 tray-position = right
 tray-padding = 2
-tray-transparent = true
 tray-background = #0063ff
 
 scroll-up = i3wm-wsnext
@@ -50,7 +52,7 @@ scroll-down = i3wm-wsprev
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
-format-foreground = #cd96e5
+format-foreground = #ffffff
 
 [module/i3]
 type = internal/i3
@@ -63,8 +65,8 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 label-focused = %index%
-label-focused-background = #353535
-label-focused-underline = #65aaca
+label-focused-background = #ee868686
+label-focused-underline = #ffccd3cc
 label-focused-padding = 2
 
 label-unfocused = %index%
@@ -80,19 +82,6 @@ exec = echo vpn
 exec-if = pgrep openconnect
 interval = 5
 format-foreground = #81a500
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -124,8 +113,8 @@ interval = 3.0
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline =  #456771
 label-connected = %essid%
-label-connected-foreground = #81a500
-label-disconnected-foreground = #f4b085
+label-connected-foreground = #ffffff
+label-disconnected-foreground = #ffffff
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
@@ -153,7 +142,7 @@ format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/volume]
+[module/alsa]
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
@@ -216,14 +205,14 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <label>
-format-foreground = #65aaca
-label-warn-foreground = #f4b085
+format-foreground = #ffffff
+label-warn-foreground = #ffffff
 format-underline =  #456771
 format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
@@ -245,7 +234,7 @@ interval = 1
 format-underline =  #456771
 format-prefix = " "
 format-prefix-foreground = #ffffff
-format-foreground = #cd96e5
+format-foreground = #ffffff
 
 [global/wm]
 margin-top = 5
