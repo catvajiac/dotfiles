@@ -49,9 +49,10 @@ export LESS_TERMCAP_ue=$(printf $WHITE)  # leave underline mode
 export LESS_TERMCAP_us=$(printf $PEACH)   # enter underline mode
 
 # path
-TEXPATH='/usr/local/texlive/2017/bin/x86_64-linux'
-MATLAB='/usr/local/matlab/r2018b/bin'
-export PATH=$PATH:~/.local/bin:$TEXPATH:$MATLAB:
+#TEXPATH='/usr/local/texlive/2019/bin/x86_64-linux'
+TEXPATH='/opt/texlive/2019/bin/x86_64-linux/'
+#MATLAB='/usr/local/matlab/r2018b/bin'
+export PATH=$PATH:~/.local/bin:$TEXPATH:
 
 # useful aliases
 alias woman='man'
@@ -82,4 +83,4 @@ fi
 $HOME/.local/bin/le_petit_prince
 
 (wal -i ~/wallpapers/space.jpg > /dev/null &)
-(cat ~/.cache/wal/sequences &)
+#(cat ~/.cache/wal/sequences &)
