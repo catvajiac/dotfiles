@@ -155,15 +155,15 @@ bindsym $mod+r mode "resize"
 # audio controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
 
 #parent screen brightness controls
 exec xbacklight -set 50
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -inc 1
+bindsym XF86MonBrightnessDown exec xbacklight -dec 1
 
 bindsym --release $mod+Shift+w exec scrot -s
 bindsym --release $mod+Shift+s exec scrot
