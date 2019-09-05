@@ -1,0 +1,49 @@
+#!/bin/bash
+
+usage() {
+  cat << EOF
+usage: `basename "$0"` [OPTIONS] device
+  -u Upload to external drive
+  -d Download from external drive
+EOF
+  exit $1
+}
+
+do_root_check() {
+    printf "Checking if root ... "
+    result=$($@ 2>&1)
+    if [ $? -eq 0 ]; then
+        echo success
+        return 0
+    else
+        echo failure
+        [ -n "$result" ] && echo $result
+        return 1
+    fi
+}
+
+if [ $# -lt 1 ]; then
+  usage 1
+elif [ "$1" = '-h' ]; then
+  usage 0
+fi
+
+do_root_check
+
+DEVICE="$2"
+
+if [ "$1" = '-u' ]; then
+  echo "Uploading..."
+  SOURCE="$HOME/projects"
+  TARGET="/mnt/ext"
+elif [ "$1" = '-d' ]; then
+  echo "Downloading..."
+  SOURCE="/mnt/ext"
+  TARGET="$HOME/projects"
+else
+  usage 1
+fi
+
+mount $DEVICE /mnt/ext
+rsync -rvzh $SOURCE $TARGET
+umount $DEVICE
